@@ -1,74 +1,174 @@
-body {
+* {
     margin: 0;
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
 }
 
-.hidden {
-    display: none;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a2a, #1a1a3a);
+    padding: 20px;
 }
 
-.center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+.container {
+    position: relative;
 }
 
-button {
-    padding: 15px 30px;
-    background: cyan;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 20px;
+#gameCanvas {
+    display: block;
+    border: 4px solid #4a4aff;
+    border-radius: 8px;
+    background: #000;
+    box-shadow: 0 0 30px rgba(74, 74, 255, 0.3);
+}
+
+.game-info {
     margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 20, 0.8);
+    border: 2px solid #4a4aff;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-button:hover {
-    background: #66ffff;
+.score, .timer, .target {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-#hud {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.score span {
+    color: #4aff4a;
+    background: #1a1a3a;
+    padding: 5px 15px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.timer span {
+    color: #ffaa00;
+    background: #1a1a3a;
+    padding: 5px 15px;
+    border-radius: 4px;
+    margin-left: 5px;
     font-size: 22px;
 }
 
-#hud span {
-    margin-right: 30px;
+.target {
+    color: #ff4aff;
+    background: #1a1a3a;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
-.pause {
-    position: absolute;
-    left: 0px;
-    top: 20px;
-    padding: 12px 20px;
-    font-size: 20px;
+.controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #aaa;
 }
 
-#gameOverScreen {
+.key {
+    background: #4a4aff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 3px 0 #2a2acc;
+}
+
+/* Game Over Screen */
+.overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.game-over-content {
+    background: rgba(10, 10, 40, 0.9);
     padding: 40px;
-    text-align: center;
     border-radius: 10px;
-    width: 300px;
+    border: 3px solid #4a4aff;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.game-over-content h1 {
+    margin-bottom: 30px;
+    font-size: 36px;
+}
+
+#gameOverTitle.win {
+    color: #4aff4a;
+}
+
+#gameOverTitle.lose {
+    color: #ff5555;
+}
+
+.final-stats {
+    margin: 30px 0;
+}
+
+.final-stats p {
+    font-size: 22px;
+    margin: 15px 0;
     color: white;
 }
 
-#gameOverScreen button {
-    margin-top: 12px;
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
+.final-stats span {
+    color: #ffaa00;
+    font-weight: bold;
+    background: #1a1a3a;
+    padding: 5px 15px;
+    border-radius: 4px;
 }
 
+.result-message {
+    color: #4aff4a !important;
+    font-size: 24px !important;
+    margin-top: 20px !important;
+    font-weight: bold !important;
+}
+
+#restartButton {
+    background: #4aff4a;
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+#restartButton:hover {
+    background: #3aff3a;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(74, 255, 74, 0.5);
+}
